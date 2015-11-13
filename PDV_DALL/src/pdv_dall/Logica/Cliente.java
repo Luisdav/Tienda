@@ -11,4 +11,5 @@ package pdv_dall.Logica;
  */
 public class Cliente {
     private String nombre;
+    private String primerApellido;
 }

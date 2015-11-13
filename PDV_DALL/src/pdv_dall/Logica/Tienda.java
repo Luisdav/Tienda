@@ -10,5 +10,5 @@ package pdv_dall.Logica;
  * @author Toshiba
  */
 public class Tienda {
-    
+    private int idTienda;
 }
