@@ -150,4 +150,16 @@ public class Usuario {
         }
     }
     
+    public void insertarUsuario(){
+        
+    }
+    
+    public void eliminarUsuario(){
+        
+    }
+    
+    public void modifiarUsuario(){
+        
+    }
+    
 }

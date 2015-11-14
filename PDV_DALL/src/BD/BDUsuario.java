@@ -31,6 +31,14 @@ public class BDUsuario {
         }
 
     }
+    
+    public void cerrarConexion(){
+        try {
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
     public Usuario obtenerUsuario(String cedula) {
         Usuario usu = new Usuario();
@@ -127,6 +135,27 @@ public class BDUsuario {
            
         } catch (SQLException ex) {
             System.out.println("Error al obtener provincia del usuario");
+        }
+    }
+     
+     public void llenarTabla( JTable tabla) {
+        String sql = "Select id,cedula,nombre,apellido1,apellido2 from Usuario";
+         try {
+            //Para manejar los datos en un JTable se utiliza un modelo,
+            //que por dejecto es "DefaultTableModel". Sin embargo queremos
+            //utilizar uno personalizado para esta aplicaciÃ³n, por eso se creÃ³
+            //DBTableModel. Si no estÃ¡ asignado (ni creado) hay que
+            //hacerlo, de lo contrario solo hace falta actualizarlo.
+            if( (tabla.getModel().getClass().toString()).equalsIgnoreCase("class conexion.DBTableModel") ) {
+                //Se actualiza porque ya existe y lo tiene asignado
+                ((DBTableModel) tabla.getModel()).actualizar(sql, servidor, usuario, password);
+            } else {
+                //Se crea uno nuevo y se asigna
+                DBTableModel modelo = new DBTableModel(sql, servidor, usuario, password);
+                tabla.setModel(modelo);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
