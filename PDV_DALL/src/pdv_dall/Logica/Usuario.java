@@ -125,7 +125,22 @@ public class Usuario {
     
     
     public void obtenerUsuario(){
-        
+        BDUsuario conexion = new BDUsuario();
+        Usuario usu = conexion.obtenerUsuarioID(this.id);
+        if (usu.getNombre() != null) {
+                this.nombre = usu.getNombre();
+                this.canton = usu.getCanton();
+                this.distrito = usu.getDistrito();
+                this.id = usu.getId();
+                this.idRol = usu.getIdRol();
+                this.primerApellido = usu.getPrimerApellido();
+                this.provincia = usu.getProvincia();
+                this.segundoApellido = usu.getSegundoApellido();
+                this.telefono = usu.getTelefono();
+             
+        } else {
+            System.out.println("usuario no encontrado");
+        }
     }
     
     public void Loging(){
@@ -151,6 +166,8 @@ public class Usuario {
     }
     
     public void insertarUsuario(){
+        BDUsuario conexion = new BDUsuario();
+        conexion.agregarUsuario(this);
         
     }
     

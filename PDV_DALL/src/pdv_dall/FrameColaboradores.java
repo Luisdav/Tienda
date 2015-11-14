@@ -1,6 +1,7 @@
 package pdv_dall;
 
 import BD.BDUsuario;
+import pdv_dall.Logica.Usuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -150,6 +151,11 @@ public class FrameColaboradores extends javax.swing.JFrame {
         BotonAceptar.setBackground(new java.awt.Color(255, 153, 51));
         BotonAceptar.setForeground(new java.awt.Color(255, 255, 255));
         BotonAceptar.setText("Aceptar");
+        BotonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAceptarActionPerformed(evt);
+            }
+        });
 
         BotonCancelar.setBackground(new java.awt.Color(153, 0, 153));
         BotonCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,6 +177,11 @@ public class FrameColaboradores extends javax.swing.JFrame {
         BotonAgregar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotonAgregar.setForeground(new java.awt.Color(255, 255, 255));
         BotonAgregar.setText("Agregar");
+        BotonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarActionPerformed(evt);
+            }
+        });
 
         BotonDashboard.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotonDashboard.setText("Dashboard");
@@ -341,10 +352,6 @@ public class FrameColaboradores extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(LabelIDRol)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(TextFieldIDRol, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(LabelIDDireccion1)
                                         .addGap(28, 28, 28)
                                         .addComponent(TextFieldIDDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -361,18 +368,23 @@ public class FrameColaboradores extends javax.swing.JFrame {
                                             .addComponent(LabelIDDireccion)
                                             .addGap(18, 18, 18)
                                             .addComponent(TextFieldIDDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56))
+                                .addGap(51, 51, 51)
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(LabelTelefono)
                                 .addGap(18, 18, 18)
                                 .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addComponent(BotonAceptar)
+                                .addGap(243, 594, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LabelIDRol)
+                                .addGap(33, 33, 33)
+                                .addComponent(TextFieldIDRol, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
-                                .addGap(243, 243, 243))))))
+                                .addGap(286, 286, 286))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,15 +447,15 @@ public class FrameColaboradores extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelTelefono)
                             .addComponent(TextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonAceptar)
+                            .addComponent(BotonAceptar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelIDRol)
+                            .addComponent(TextFieldIDRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(LabelIDRol)
-                                    .addComponent(TextFieldIDRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(LabelIDDireccion)
                                     .addComponent(TextFieldIDDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -452,13 +464,13 @@ public class FrameColaboradores extends javax.swing.JFrame {
                                     .addComponent(LabelIDDireccion1)
                                     .addComponent(TextFieldIDDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LabelIDDireccion2)
                                     .addComponent(TextFieldIDDireccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(TextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -503,6 +515,37 @@ public class FrameColaboradores extends javax.swing.JFrame {
     private void BotonAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAbonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonAbonoActionPerformed
+
+    private void BotonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAceptarActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(TextFieldIDColaborador.getText());
+        Usuario colaborador = new Usuario();
+        colaborador.setId(id);
+        colaborador.obtenerUsuario();
+        TextFieldNombreColaborador.setText(colaborador.getNombre());
+    }//GEN-LAST:event_BotonAceptarActionPerformed
+
+    private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
+        // TODO add your handling code here:
+        String nombre = TextFieldNombreColaborador.getText();
+        String apellido1 = TextFieldPrimerApellido.getText();
+        String apellido2= TextFieldSegundoApellido.getText();
+        String cedula = TextFieldNumeroCedula.getText();
+        String telefono = TextFieldTelefono.getText();
+        int rol = Integer.parseInt(TextFieldIDRol.getText());
+        String contrasena = TextFieldIDLogin.getText();
+        String fecha = TextFieldFecha.getText();
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombre);
+        usuario.setCedula(cedula);
+        usuario.setContrasena(contrasena);
+        usuario.setPrimerApellido(apellido1);
+        usuario.setSegundoApellido(apellido2);
+        usuario.setIdRol(rol);
+        usuario.setFechaNacimiento(fecha);
+        usuario.setTelefono(telefono);
+        usuario.insertarUsuario();
+    }//GEN-LAST:event_BotonAgregarActionPerformed
 
     /**
      * @param args the command line arguments

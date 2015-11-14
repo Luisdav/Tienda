@@ -139,7 +139,7 @@ public class BDUsuario {
     }
      
      public void llenarTabla( JTable tabla) {
-        String sql = "Select id,cedula,nombre,apellido1,apellido2 from Usuario";
+        String sql = "Select * from Usuario";
          try {
             //Para manejar los datos en un JTable se utiliza un modelo,
             //que por dejecto es "DefaultTableModel". Sin embargo queremos
@@ -158,4 +158,49 @@ public class BDUsuario {
             System.out.println(e.getMessage());
         }
     }
+     
+     public Usuario obtenerUsuarioID(int id) {
+        Usuario usu = new Usuario();
+        try {
+            Statement comando = conexion.createStatement();
+            ResultSet resultado = null;
+            boolean consulta = comando.execute("Select * from Usuario where id='" + id + "';");
+            if (consulta) {
+                resultado = comando.getResultSet();
+                while (resultado.next()) {
+                    usu.setId(resultado.getInt("id"));
+                    usu.setNombre(resultado.getString("nombre"));
+                    usu.setCedula(resultado.getString("cedula"));
+                    usu.setContrasena(resultado.getString("login"));
+                    usu.setPrimerApellido(resultado.getString("apellido1"));
+                    usu.setSegundoApellido(resultado.getString("apellido2"));
+                    usu.setIdRol(resultado.getInt("idRol"));
+                    usu.setTelefono(resultado.getString("telefono"));
+                    int idDireccion = resultado.getInt("idDireccion");
+                    obtenerDistrito(idDireccion, usu);
+                }
+            } else {
+                usu = null;
+            }
+
+            
+            conexion.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener usuario");
+        }
+        return usu;
+    }
+     
+     public void agregarUsuario(Usuario usuario){
+        try {
+            Statement comando = conexion.createStatement();
+            
+            boolean consulta = comando.execute("INSERT INTO Usuario VALUES('" + usuario.getCedula() +"', '"+ usuario.getNombre() + "', '" + usuario.getPrimerApellido() +  "', '" + usuario.getSegundoApellido()+ "', '" + usuario.getTelefono()+ "', "+ usuario.getIdRol() + ", "+ "1" + ", '" + usuario.getContrasena() + "', '" + usuario.getFechaNacimiento() + "');");
+            conexion.close();
+            System.out.println("El usuario " + usuario.getNombre() + " " + usuario.getPrimerApellido() + ", cedula:" + usuario.getCedula() + " a sido agregado");
+        } catch (SQLException ex) {
+            System.out.println("Error al ingresar usuario");
+        }
+        
+     }
 }
