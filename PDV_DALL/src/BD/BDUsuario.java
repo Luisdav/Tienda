@@ -27,7 +27,7 @@ public class BDUsuario {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(servidor, usuario, password);
         } catch (Exception ex) {
-            System.out.println("Ha ocurrido un problema durante la conexion");
+            System.out.println("Ha ocurrido un problema durante la conexion \n" + ex);
         }
 
     }
